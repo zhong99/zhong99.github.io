@@ -1,0 +1,171 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>C++类的大小讨论 | ZeeCloud</title><meta name="keywords" content="C++"><meta name="author" content="橙"><meta name="copyright" content="橙"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1.类的大小与非静态成员变量有关，与成员函数，友元函数，static变量无关。 12345678910class Text&amp;#123;public:void fun1(); &#x2F;&#x2F;普通成员函数friend void fun2();&#x2F;&#x2F;友元函数static void fun3();&#x2F;&#x2F;静态成员函数private:int a; &#x2F;&#x2F;非静态成员变量static double b;&#x2F;&#x2F;静态成员变量&amp;#125">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++类的大小讨论">
+<meta property="og:url" content="http://example.com/2021/06/01/C++%E7%B1%BB%E7%9A%84%E5%A4%A7%E5%B0%8F%E8%AE%A8%E8%AE%BA/index.html">
+<meta property="og:site_name" content="ZeeCloud">
+<meta property="og:description" content="1.类的大小与非静态成员变量有关，与成员函数，友元函数，static变量无关。 12345678910class Text&amp;#123;public:void fun1(); &#x2F;&#x2F;普通成员函数friend void fun2();&#x2F;&#x2F;友元函数static void fun3();&#x2F;&#x2F;静态成员函数private:int a; &#x2F;&#x2F;非静态成员变量static double b;&#x2F;&#x2F;静态成员变量&amp;#125">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg">
+<meta property="article:published_time" content="2021-06-01T15:22:25.986Z">
+<meta property="article:modified_time" content="2021-06-01T15:22:12.688Z">
+<meta property="article:author" content="橙">
+<meta property="article:tag" content="C++">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg"><link rel="shortcut icon" href="/img/favicon.jpeg"><link rel="canonical" href="http://example.com/2021/06/01/C++%E7%B1%BB%E7%9A%84%E5%A4%A7%E5%B0%8F%E8%AE%A8%E8%AE%BA/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'C++类的大小讨论',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2021-06-01 23:22:12'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://i.loli.net/2021/06/01/ZUNfC6gGcO5ykdB.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">5</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">ZeeCloud</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">C++类的大小讨论</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-06-01T15:22:25.986Z" title="发表于 2021-06-01 23:22:25">2021-06-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-06-01T15:22:12.688Z" title="更新于 2021-06-01 23:22:12">2021-06-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="C++类的大小讨论"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>1.类的大小与非静态成员变量有关，与成员函数，友元函数，static变量无关。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Text</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fun1</span><span class="params">()</span></span>; <span class="comment">//普通成员函数</span></span><br><span class="line"><span class="function"><span class="keyword">friend</span> <span class="keyword">void</span> <span class="title">fun2</span><span class="params">()</span></span>;<span class="comment">//友元函数</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">fun3</span><span class="params">()</span></span>;<span class="comment">//静态成员函数</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line"><span class="keyword">int</span> a; <span class="comment">//非静态成员变量</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">double</span> b;<span class="comment">//静态成员变量</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">int</span> size=<span class="built_in"><span class="keyword">sizeof</span></span>(Text);<span class="comment">//size=4</span></span><br></pre></td></tr></table></figure>
+<p>由上述代码可知，int大小为4字节，且是类Text中唯一的非静态成员变量，所以类的大小为4字节。<br>也就是说我们定义一个Text对象时，这个在内存中仅占用4字节。<br>因为在C++中，对于普通成员函数和静态成员函数，在类中仅仅是声明了它的接口，而成员函数仅在它定义的模块占用内存。<br>对于静态成员变量，因为它是所有类的对象共有的，所以不能属于某个对象，因此也仅在定义的模块占用内存。</p>
+<p>2.有时候我们定义这样两个类，它们具有相同的成员变量，但是不一定具有相同的大小，因为我们还要考虑类中定义的变量字节对齐的问题。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line"><span class="keyword">bool</span> bval;</span><br><span class="line"><span class="keyword">char</span> cval;</span><br><span class="line"><span class="keyword">int</span> ival;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//成员变量相同，但调换了定义的顺序</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span>&#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line"><span class="keyword">bool</span> bval;</span><br><span class="line"><span class="keyword">int</span> ival;</span><br><span class="line"><span class="keyword">char</span> cval;</span><br><span class="line">&#125;；</span><br><span class="line"><span class="keyword">int</span> sizeA=<span class="built_in"><span class="keyword">sizeof</span></span>(A);<span class="comment">//sizeA=8</span></span><br><span class="line"><span class="keyword">int</span> sizeB=<span class="built_in"><span class="keyword">sizeof</span></span>(B);<span class="comment">//sizeB=12</span></span><br></pre></td></tr></table></figure>
+
+<p>3.空类大小为1</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Text</span>&#123;</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">int</span> size=<span class="built_in"><span class="keyword">sizeof</span></span>(Test);<span class="comment">//size=1;</span></span><br></pre></td></tr></table></figure>
+<p>4.继承类保存基类的成员变量的副本</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line"><span class="keyword">int</span> a;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span>:</span><span class="keyword">public</span> A&#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line"><span class="keyword">int</span> b;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">int</span> size=<span class="built_in"><span class="keyword">sizeof</span></span>(B);<span class="comment">//size=8;</span></span><br></pre></td></tr></table></figure>
+<p>注意：这里我选择了public继承，事实上private和protect继承方式继承的子类都保存着其父类的成员变量的副本，尽管在子类中并没有访问它们的接口。</p>
+<p>5.声明虚函数需要维持一个指向虚函数表的指针<br>当我们为一个类声明了虚函数，或者其父类含有虚函数时，C++则为该类的对象分配了一个虚函数指针，指向该类的虚函数表。（虚函数表是类的，而虚函数指针是对象的）<br><img src="https://img-blog.csdnimg.cn/20210506104953573.png" alt="在这里插入图片描述"></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">V</span>&#123;</span></span><br><span class="line"><span class="keyword">virtual</span> ~<span class="built_in">V</span>();  <span class="comment">//将析构函数声明为虚函数</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">int</span> size=<span class="built_in">siseof</span>(V); <span class="comment">//size=4;</span></span><br></pre></td></tr></table></figure>
+
+<p>因为在32位系统中一个指针占用4字节，所以默认情况下类并不含有虚函数指针，以达到节省空间的目的。</p>
+<p>6.多重继承下的虚函数指针<br>当一个类同时继承自多个父类时<br><img src="https://img-blog.csdnimg.cn/20210506104120826.png" alt="在这里插入图片描述"><br>1） 每个父类都有自己的虚表。<br>2） 子类的成员函数被放到了第一个父类的表中。（所谓的第一个父类是按照声明顺序来判断的）<br>因此<strong>子类对象维持着与父类个数相同的虚函数指针</strong>。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line"><span class="keyword">virtual</span> ~<span class="built_in">A</span>();</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span>&#123;</span></span><br><span class="line"><span class="keyword">virtual</span> ~<span class="built_in">B</span>();</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span>:</span><span class="keyword">public</span> A,<span class="keyword">public</span> B&#123;  <span class="comment">//继承类A，B</span></span><br><span class="line"><span class="keyword">virtual</span> ~<span class="built_in">C</span>();</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">int</span> size=<span class="built_in"><span class="keyword">sizeof</span></span>(C);<span class="comment">//size=8，两个虚函数指针的大小</span></span><br></pre></td></tr></table></figure>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/C/">C++</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2021/06/01/const%E9%99%90%E5%AE%9A%E7%AC%A6%E8%AF%A6%E8%A7%A3/"><img class="next-cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info"></div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/06/01/leecode最长回文串题解/" title="leecode最长回文串题解"><img class="cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-06-01</div><div class="title">leecode最长回文串题解</div></div></a></div><div><a href="/2021/05/31/hello-world/" title="Hello World"><img class="cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-05-31</div><div class="title">Hello World</div></div></a></div><div><a href="/2021/06/01/接口继承和实现继承（pure-virtual,virtual,non-virtual)/" title="区别接口继承和实现继承"><img class="cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-06-01</div><div class="title">区别接口继承和实现继承</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://i.loli.net/2021/06/01/ZUNfC6gGcO5ykdB.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">橙</div><div class="author-info__description">Success requires accumulation</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">5</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhong99"><i class="fab fa-github"></i><span>我的主页</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">橙 的个人博客</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/06/01/C++%E7%B1%BB%E7%9A%84%E5%A4%A7%E5%B0%8F%E8%AE%A8%E8%AE%BA/" title="C++类的大小讨论"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="C++类的大小讨论"/></a><div class="content"><a class="title" href="/2021/06/01/C++%E7%B1%BB%E7%9A%84%E5%A4%A7%E5%B0%8F%E8%AE%A8%E8%AE%BA/" title="C++类的大小讨论">C++类的大小讨论</a><time datetime="2021-06-01T15:22:25.986Z" title="发表于 2021-06-01 23:22:25">2021-06-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/06/01/const%E9%99%90%E5%AE%9A%E7%AC%A6%E8%AF%A6%E8%A7%A3/" title="无题"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2021/06/01/const%E9%99%90%E5%AE%9A%E7%AC%A6%E8%AF%A6%E8%A7%A3/" title="无题">无题</a><time datetime="2021-06-01T15:18:18.952Z" title="发表于 2021-06-01 23:18:18">2021-06-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/06/01/leecode%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E4%B8%B2%E9%A2%98%E8%A7%A3/" title="leecode最长回文串题解"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="leecode最长回文串题解"/></a><div class="content"><a class="title" href="/2021/06/01/leecode%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E4%B8%B2%E9%A2%98%E8%A7%A3/" title="leecode最长回文串题解">leecode最长回文串题解</a><time datetime="2021-06-01T11:17:55.012Z" title="发表于 2021-06-01 19:17:55">2021-06-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/06/01/%E6%8E%A5%E5%8F%A3%E7%BB%A7%E6%89%BF%E5%92%8C%E5%AE%9E%E7%8E%B0%E7%BB%A7%E6%89%BF%EF%BC%88pure-virtual,virtual,non-virtual)/" title="区别接口继承和实现继承"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="区别接口继承和实现继承"/></a><div class="content"><a class="title" href="/2021/06/01/%E6%8E%A5%E5%8F%A3%E7%BB%A7%E6%89%BF%E5%92%8C%E5%AE%9E%E7%8E%B0%E7%BB%A7%E6%89%BF%EF%BC%88pure-virtual,virtual,non-virtual)/" title="区别接口继承和实现继承">区别接口继承和实现继承</a><time datetime="2021-06-01T09:17:16.612Z" title="发表于 2021-06-01 17:17:16">2021-06-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/05/31/hello-world/" title="Hello World"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello World"/></a><div class="content"><a class="title" href="/2021/05/31/hello-world/" title="Hello World">Hello World</a><time datetime="2021-05-31T10:24:33.190Z" title="发表于 2021-05-31 18:24:33">2021-05-31</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By 橙</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"></div><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
