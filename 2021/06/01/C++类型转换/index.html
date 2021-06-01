@@ -1,0 +1,199 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>C++类型转换 | ZeeCloud</title><meta name="keywords" content="C++"><meta name="author" content="橙"><meta name="copyright" content="橙"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="一.隐式转换如果两个运算对象类型不同，C++语言不会直接将两个不同类型的值相加，而是先根据类型转换规则设法将运算对象的类型统一后再求值，上述的类型转换是自动执行的，因此被称作隐式转换。 算术类型之间的转换被设计得尽可能避免损失精度。例如，如果表达式中既有整数类型也有浮点数类型的运算对象，整型会转换为浮点型。 1int val&#x3D;3.14+3; &#x2F;&#x2F;val的值为6 上述例子中，int型和double型">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++类型转换">
+<meta property="og:url" content="http://example.com/2021/06/01/C++%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/index.html">
+<meta property="og:site_name" content="ZeeCloud">
+<meta property="og:description" content="一.隐式转换如果两个运算对象类型不同，C++语言不会直接将两个不同类型的值相加，而是先根据类型转换规则设法将运算对象的类型统一后再求值，上述的类型转换是自动执行的，因此被称作隐式转换。 算术类型之间的转换被设计得尽可能避免损失精度。例如，如果表达式中既有整数类型也有浮点数类型的运算对象，整型会转换为浮点型。 1int val&#x3D;3.14+3; &#x2F;&#x2F;val的值为6 上述例子中，int型和double型">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg">
+<meta property="article:published_time" content="2021-06-01T15:25:13.191Z">
+<meta property="article:modified_time" content="2021-06-01T15:20:16.106Z">
+<meta property="article:author" content="橙">
+<meta property="article:tag" content="C++">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg"><link rel="shortcut icon" href="/img/favicon.jpeg"><link rel="canonical" href="http://example.com/2021/06/01/C++%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'C++类型转换',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-06-01 23:20:16'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://i.loli.net/2021/06/01/ZUNfC6gGcO5ykdB.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">ZeeCloud</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">C++类型转换</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-06-01T15:25:13.191Z" title="发表于 2021-06-01 23:25:13">2021-06-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-06-01T15:20:16.106Z" title="更新于 2021-06-01 23:20:16">2021-06-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="C++类型转换"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="一-隐式转换"><a href="#一-隐式转换" class="headerlink" title="一.隐式转换"></a>一.隐式转换</h1><p>如果两个运算对象类型不同，C++语言不会直接将两个不同类型的值相加，而是先根据类型转换规则设法将运算对象的类型统一后再求值，上述的类型转换是<strong>自动执行的，因此被称作隐式转换。</strong></p>
+<p>算术类型之间的转换被设计得尽可能避免损失精度。例如，如果表达式中既有整数类型也有浮点数类型的运算对象，整型会转换为浮点型。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> val=<span class="number">3.14</span>+<span class="number">3</span>; <span class="comment">//val的值为6</span></span><br></pre></td></tr></table></figure>
+<p>上述例子中，int型和double型相加，3转换为double型，然后执行浮点数加法，所得结果类型是double。<br>接下来是对val的初始化，因为被初始化的对象的类型无法改变，所以初始值被转换成该对象的类型。所以double类型的结果转换成int类型的值，这个值被用来初始化val。double向int类型的转换忽略小数部分，因此数值6赋给了val;</p>
+<p><strong>隐式类型转换发生情况</strong>（编译器自动转换运算对象的类型）：<br>1.在大多数表达式中，比int类型小的整型值（bool，char，short等）首先提升为较大的整数类型。<br>2.在条件中，非bool转换成bool类型。<br>3.初始化过程中，初始值转换为变量的类型；在赋值语句中，右侧运算对象转换成左侧运算对象的类型。<br>4.如果算术运算或关系运算的运算对象有多种类型，需要转换成同一种类型。<br>5.函数调用时也可能发生类型转换。</p>
+<h2 id="算术转换"><a href="#算术转换" class="headerlink" title="算术转换"></a>算术转换</h2><p><strong>算术转换</strong><br><strong>算术转换</strong>的含义是把一种算术类型转换成另一种算术类型。<br>算术转换的规则定义了一套类型转换的层次，其中运算符的运算对象会转换成最宽的类型。另一种更普遍的情况是，当表达式中既有浮点类型也有整数类型时，整数值将转换成相应的浮点类型。</p>
+<p><strong>整型提升</strong><br><strong>整型提升</strong>负责把小整数类型转换成较大的整型类型。对于bool，char，signed char，unsigned char，short和unsigned short等类型来说，只要它们所有可能的值都能存在int里，它们就会提升成int类型，否则提升成unsigned int类型。</p>
+<p><strong>无符号类型的运算对象</strong><br>如果某个运算符的运算对象类型不一致，这些运算对象将转换为同一种类型，但是如果某个运算对象的类型是无符号类型，那么转换的结果就要依赖于机器中各个整数类型的<strong>相对大小</strong>了。<br>像往常一样，首先执行整型提升。如果结果的类型匹配，无须进行进一步的转换。如果两个(提升后的）运算对象的类型要么都是带符号的、要么都是无符号的，则<strong>小类型的运算对象转换成较大的类型</strong>。<br>如果一个运算对象是无符号类型、另外一个运算对象是带符号类型，而且其中的无符号类型不小于带符号类型，那么<strong>带符号的运算对象转换成无符号</strong>的。例如，假设两个类型分别是unsigned int和int，则int类型的运算对象转换成unsigned int类型。<br>剩下的一种情况是带符号类型大于无符号类型，此时转换的结果依赖于机器。如果无符号类型的所有值都能存在该带符号类型中，则<strong>无符号类型的运算对象转换成带符号类型</strong>。如果不能，那么带符号类型的运算对象转换成无符号类型。例如，如果两个运算对象的类型分别是long和 unsigned int，并且int和long 的大小相同，则long类型的运算对象转换成unsigned int类型;如果 long类型占用的空间比 int更多，则unsignedint类型的运算对象转换成long类型。</p>
+<h2 id="其他隐式转换"><a href="#其他隐式转换" class="headerlink" title="其他隐式转换"></a>其他隐式转换</h2><p>除了算术转换之外还有几种隐式类型转换，包括如下几种。<br><strong>数组转换成指针</strong>:在大多数用到数组的表达式中，数组自动转换成指向数组首元素的指针;</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> ia[<span class="number">10</span>];</span><br><span class="line"><span class="comment">//含有10个整数的数组</span></span><br><span class="line"><span class="keyword">int</span>* ip - ia;</span><br><span class="line"><span class="comment">// ia转换成指向数组首元素的指针</span></span><br></pre></td></tr></table></figure>
+<p><strong>指针的转换</strong>:C++还规定了几种其他的指针转换方式，包括常量整数值0或者字面值nullptr能转换成任意指针类型;指向任意非常量的指针能转换成void*;指向任意对象的指针能转换成const void*。</p>
+<p><strong>转换成布尔类型</strong>:存在一种从算术类型或指针类型向布尔类型自动转换的机制。如果指针或算术类型的值为0，转换结果是false:否则转换结果是true:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> *cp = <span class="built_in">get_string</span> () ;</span><br><span class="line"><span class="keyword">if</span> (cp)<span class="comment">//如果指针cp 不是0，条件为真</span></span><br><span class="line"><span class="keyword">while</span> (*cp)<span class="comment">//如果*cp不是空字符，条件为真</span></span><br></pre></td></tr></table></figure>
+<p><strong>转换成常量</strong>:允许将指向非常量类型的指针转换成指向相应的常量类型的指针，对于引用也是这样。也就是说，如果T是一种类型，我们就能将指向T的指针或引用分别转换成指向const T的指针或引用</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp;j= i;</span><br><span class="line"><span class="comment">//非常量转换成const int的引用</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> *p = &amp;i ;</span><br><span class="line"><span class="comment">//非常量的地址转换成const的地址</span></span><br><span class="line"><span class="keyword">int</span> &amp;r = j, *q = p;</span><br><span class="line"><span class="comment">//错误:不允许const转换成非常量</span></span><br></pre></td></tr></table></figure>
+<p>相反的转换并不存在，因为它试图删除掉底层const。<br><strong>类类型定义的转换</strong>:类类型能定义由编译器自动执行的转换，不过编译器每次只能执行一种类类型的转换。<br>我们之前的程序已经使用过类类型转换:一处是在需要标准库string类型的地方使用C风格字符串;<br>另一处是在条件部分读入istream:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">string s, t = <span class="string">&quot;a value&quot;</span>;<span class="comment">//字符串字面值转换成string类型</span></span><br><span class="line"><span class="keyword">while</span> (cin &gt;&gt;s)</span><br><span class="line"><span class="comment">// while的条件部分把cin 转换成布尔值</span></span><br></pre></td></tr></table></figure>
+<p>条件(cin&gt;&gt;s)读入cin的内容并将cin作为其求值结果。条件部分本来需要一个布尔类型的值，但是这里实际检查的是istream类型的值。幸好，IO库定义了从 istream向布尔值转换的规则，根据这一规则，cin自动地转换成布尔值。所得的布尔值到底是什么由输入流的状态决定，如果最后一次读入成功，转换得到的布尔值是 true;相反，如果最后一次读入不成功，转换得到的布尔值是false。</p>
+<h1 id="二-显示转换"><a href="#二-显示转换" class="headerlink" title="二.显示转换"></a>二.显示转换</h1><p>有时我们希望显式地将对象强制转换成另外一种类型。例如，如果想在下面的代码中执行浮点数除法:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i,j;</span><br><span class="line"><span class="keyword">double</span> slope = i/j;</span><br></pre></td></tr></table></figure>
+<p>就要使用某种方法将i和/或j显式地转换成double,这种方法称作强制类型转换( cast)。</p>
+<h2 id="命名的强制类型转换"><a href="#命名的强制类型转换" class="headerlink" title="命名的强制类型转换"></a>命名的强制类型转换</h2><p>一个命名的强制类型转换具有如下形式:cast-name&lt;类型&gt;(expression);<br>其中，type是转换的目标类型而expression是要转换的值。如果type是引用类型，则结果是左值。cast-name是<strong>static_cast , dynamic_cast , const_cast和reinterpret_cast</strong>中的一种。。cast-name指定了执行的是哪种转换。<br><strong>static_cast</strong><br>任何具有明确定义的类型转换,只要不包含底层const，都可以使用static_cast。例如，通过将一个运算对象强制转换成double类型就能使表达式执行浮点数除法:<br>//进行强制类型转换以便执行浮点数除法</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> slope = <span class="keyword">static_cast</span>&lt;<span class="keyword">double</span>&gt;(j)/ i;</span><br></pre></td></tr></table></figure>
+<p>当需要把一个<strong>较大的算术类型赋值给较小的类型时</strong>，static_cast非常有用。此时，强制类型转换告诉程序的读者和编译器:我们知道并且不在乎潜在的精度损失。一般来说,如果编译器发现一个较大的算术类型试图赋值给较小的类型，就会给出警告信息;但是当我们执行了显式的类型转换后，警告信息就会被关闭了。<br>static_cast对于<strong>编译器无法自动执行的类型转换</strong>也非常有用。例如，我们可以使用static_cast找回存在于void*指针中的值:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span>* p = sd;<span class="comment">//正确:任何非常量对象的地址都能存入void*</span></span><br><span class="line"><span class="comment">//正确:将void*转换回初始的指针类型</span></span><br><span class="line"><span class="keyword">double</span> * dp = <span class="keyword">static_cast</span>&lt;<span class="keyword">double</span>*&gt; (p);</span><br></pre></td></tr></table></figure>
+<p>当我们把指针存放在void<em>中，并且使用static_cast将其强制转换回原来的类型时，应该确保指针的值保持不变。也就是说，强制转换的结果将与原始的地址值相等，因此<br>我们必须确保转换后所得的类型就是指针所指的类型。类型一旦不符，将产生未定义的后果。<br><strong>const_cast</strong><br>const_cast只能改变运算对象的*<em>底层const</em></em>:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *pc;</span><br><span class="line"><span class="keyword">char</span> *p = <span class="keyword">const_cast</span>&lt;<span class="keyword">char</span>*&gt;(pc);<span class="comment">//正确:但是通过p 写值是未定义的行为</span></span><br></pre></td></tr></table></figure>
+<p>对于将常量对象转换成非常量对象的行为，我们一般称其为“去掉const性质( cast awaythe const)”。一旦我们去掉了某个对象的const性质，编译器就不再阻止我们对该对象进行写操作了。如果对象本身不是一个常量，使用强制类型转换获得写权限是合法的行为。然而如果对象是一个常量，再使用const_cast执行写操作就会产生未定义的后果。<br><strong>只有 const_cast能改变表达式的常量属性</strong>，使用其他形式的命名强制类型转换改变表达式的常量属性都将引发编译器错误。同样的，也不能用const_cast改变表达式的类型:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *cp;</span><br><span class="line"><span class="comment">//错误:static_cast不能转换掉const性质char *q = static_cast&lt;char* &gt; (cp) ;</span></span><br><span class="line"><span class="keyword">static_cast</span>&lt;string&gt;(cp);<span class="comment">//正确:字符串字面值转换成string类型const_cast&lt;string&gt; (cp) ;</span></span><br><span class="line"><span class="comment">//错误: const cast只改变常量属性</span></span><br></pre></td></tr></table></figure>
+<p>const_cast常常用于有<strong>函数重载的上下文中</strong>。<br><strong>reinterpret_cast</strong><br>reinterpret_cast通常为<strong>运算对象的位模式提供较低层次上的重新解释</strong>。举个例子，假设有如下的转换</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *ip;</span><br><span class="line"><span class="keyword">char</span> *pc = <span class="keyword">reinterpret_cast</span>&lt;<span class="keyword">char</span>*&gt;(ip);</span><br></pre></td></tr></table></figure>
+<p>我们必须牢记pc所指的真实对象是一个int而非字符，如果把pc当成普通的字符指针使用就可能在运行时发生错误。例如:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">string <span class="title">str</span> <span class="params">(pc)</span> </span>;</span><br></pre></td></tr></table></figure>
+<p>可能导致异常的运行时行为。<br>使用reinterpret_cast是非常危险的，用pc初始化str的例子很好地证明了这一点。其中的关键问题是类型改变了，但编译器没有给出任何警告或者错误的提示信息。当我们用一个int 的地址初始化pc时，由于显式地声称这种转换合法，所以编译器不会发出任何警告或错误信息。接下来再使用pc时就会认定它的值是char* 类型，编译器没法知道它实际存放的是指向int的指针。最终的结果就是，在上面的例子中虽然用pc初始化 str 没什么实际意义，甚至还可能引发更糟糕的后果，但仅从语法上而言这种操作无可指摘。查找这类问题的原因非常困难，如果将 ip强制转换成pc的语句和用pc初始化string对象的语句分属不同文件就更是如此。<br><strong>dynamic_cast</strong><br>dynamic_cast运算符用于<strong>将基类的指针或引用安全地转换成派生类的指针或引用</strong>。<br>dynamic_cast运算符（dynamic_cast operator）的使用形式如下所示:<br>dynamic_cast&lt;type* &gt; (e)<br>dynamic_cast&lt;type&amp;&gt; (e)<br>dynamic_cast&lt;type&amp; &amp;&gt;(e)<br>其中，type必须是一个类类型，并且通常情况下该类型应该含有虚函数。在第一种形式中，e必须是一个有效的指针;在第二种形式中，e必须是一个左值;在第三种形式中，e不能是左值。</p>
+<p>在上面的所有形式中，e的类型必须符合以下三个条件中的任意一个:e的类型是目标type的公有派生类、e的类型是目标 type的公有基类或者e的类型就是目标type 的类型。如果符合，则类型转换可以成功。否则，转换失败。如果一条dynamic cast语句的转换目标是指针类型并且失败了，则结果为0。如果转换目标是引用类型并且失败了，则dynamic_cast运算符将抛出一个bad_cast异常。<br><strong>指针类型的dynamic_cast</strong><br>举个简单的例子，假定 Base类至少含有一个虚函数，Derived是 Base的公有派生类。如果有一个指向Base的指针 bp，则我们可以在运行时将它转换成指向Derived的指针，具体代码如下:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ( Derived *dp = <span class="keyword">dynamic_cast</span>&lt;Derived*&gt; (bp) )&#123;</span><br><span class="line"><span class="comment">//使用dp指向的Derived对象</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123; </span><br><span class="line"><span class="comment">// bp 指向一个 Base对象</span></span><br><span class="line"><span class="comment">//使用bp指向的Base对象</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果bp指向Derived对象,则上述的类型转换初始化dp并令其指向bp所指的Derived对象。此时，if语句内部使用Derived操作的代码是安全的。否则，类型转换的结果为0，dp为0意味着if语句的条件失败，此时else子句执行相应的Base操作。<br>值得注意的一点是，我们在条件部分定义了 dp，这样做的好处是可以在一个操作中同时完成类型转换和条件检查两项任务。而且，指针 dp在if语句外部是不可访问的。一旦转换失败，即使后续的代码忘了做相应判断，也不会接触到这个未绑定的指针，从而确保程序是安全的。<br><strong>引用类型的dynamic_cast</strong><br>引用类型的 dynamic_cast与指针类型的dynamic_cast在表示错误发生的方式上略有不同。因为不存在所谓的空引用，所以对于引用类型来说无法使用与指针类型完全相同的错误报告策略。当对引用的类型转换失败时，程序抛出一个名为std: : bad_cast的异常，该异常定义在typeinfo标准库头文件中。<br>我们可以按照如下的形式改写之前的程序，令其使用引用类型:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(<span class="keyword">const</span> Base &amp;b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line"><span class="keyword">const</span> Derived &amp;d = <span class="keyword">dynamic_cast</span>&lt;<span class="keyword">const</span> Derived&amp;&gt;(b);<span class="comment">//使用b引用的Derived对象</span></span><br><span class="line">&#125;<span class="built_in"><span class="keyword">catch</span></span> (bad_cast) &#123;</span><br><span class="line"><span class="comment">//处理类型转换失败的情况</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="旧式的强制类型转换旧式的强制类型转换"><a href="#旧式的强制类型转换旧式的强制类型转换" class="headerlink" title="旧式的强制类型转换旧式的强制类型转换"></a>旧式的强制类型转换旧式的强制类型转换</h2><p>在早期版本的C++语言中，显式地进行强制类型转换包含两种形式:type (expr ) ;<br>//函数形式的强制类型转换<br>(type )expr;<br>l /c语言风格的强制类型转换<br>根据所涉及的类型不同，旧式的强制类型转换分别具有与const_cast 、static_cast或reinterpret_cast相似的行为。当我们在某处执行旧式的强制类型转换时，如果换成const_cast和 static_cast 也合法，则其行为与对应的命名转换一致。如果替换后不合法,则旧式强制类型转换执行与reinterpret_cast类似的功能:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> *pc = (<span class="keyword">char</span>*) ip; <span class="comment">// ip是指向整数的指针的效果与使用reinterpret_cast一样。</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="三-类型转换的其他讨论"><a href="#三-类型转换的其他讨论" class="headerlink" title="三.类型转换的其他讨论"></a>三.类型转换的其他讨论</h1><h2 id="基类与继承类之间的转换"><a href="#基类与继承类之间的转换" class="headerlink" title="基类与继承类之间的转换"></a>基类与继承类之间的转换</h2><p><strong>基类向继承类的转换</strong></p>
+<p><strong>继承类向基类的转换</strong></p>
+<h2 id="explict修饰的构造函数"><a href="#explict修饰的构造函数" class="headerlink" title="explict修饰的构造函数"></a>explict修饰的构造函数</h2></article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/C/">C++</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2021/06/01/C++%E7%B1%BB%E7%9A%84%E5%A4%A7%E5%B0%8F%E8%AE%A8%E8%AE%BA/"><img class="next-cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">C++类的大小讨论</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/06/01/leecode最长回文串题解/" title="leecode最长回文串题解"><img class="cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-06-01</div><div class="title">leecode最长回文串题解</div></div></a></div><div><a href="/2021/05/31/hello-world/" title="Hello World"><img class="cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-05-31</div><div class="title">Hello World</div></div></a></div><div><a href="/2021/06/01/接口继承和实现继承（pure-virtual,virtual,non-virtual)/" title="区别接口继承和实现继承"><img class="cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-06-01</div><div class="title">区别接口继承和实现继承</div></div></a></div><div><a href="/2021/06/01/C++类的大小讨论/" title="C++类的大小讨论"><img class="cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-06-01</div><div class="title">C++类的大小讨论</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://i.loli.net/2021/06/01/ZUNfC6gGcO5ykdB.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">橙</div><div class="author-info__description">Success requires accumulation</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhong99"><i class="fab fa-github"></i><span>我的主页</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">橙 的个人博客</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80-%E9%9A%90%E5%BC%8F%E8%BD%AC%E6%8D%A2"><span class="toc-number">1.</span> <span class="toc-text">一.隐式转换</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%97%E6%9C%AF%E8%BD%AC%E6%8D%A2"><span class="toc-number">1.1.</span> <span class="toc-text">算术转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E9%9A%90%E5%BC%8F%E8%BD%AC%E6%8D%A2"><span class="toc-number">1.2.</span> <span class="toc-text">其他隐式转换</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C-%E6%98%BE%E7%A4%BA%E8%BD%AC%E6%8D%A2"><span class="toc-number">2.</span> <span class="toc-text">二.显示转换</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E5%90%8D%E7%9A%84%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-number">2.1.</span> <span class="toc-text">命名的强制类型转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A7%E5%BC%8F%E7%9A%84%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E6%97%A7%E5%BC%8F%E7%9A%84%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-number">2.2.</span> <span class="toc-text">旧式的强制类型转换旧式的强制类型转换</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89-%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E7%9A%84%E5%85%B6%E4%BB%96%E8%AE%A8%E8%AE%BA"><span class="toc-number">3.</span> <span class="toc-text">三.类型转换的其他讨论</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%B1%BB%E4%B8%8E%E7%BB%A7%E6%89%BF%E7%B1%BB%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="toc-number">3.1.</span> <span class="toc-text">基类与继承类之间的转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#explict%E4%BF%AE%E9%A5%B0%E7%9A%84%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-number">3.2.</span> <span class="toc-text">explict修饰的构造函数</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/06/01/C++%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" title="C++类型转换"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="C++类型转换"/></a><div class="content"><a class="title" href="/2021/06/01/C++%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" title="C++类型转换">C++类型转换</a><time datetime="2021-06-01T15:25:13.191Z" title="发表于 2021-06-01 23:25:13">2021-06-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/06/01/C++%E7%B1%BB%E7%9A%84%E5%A4%A7%E5%B0%8F%E8%AE%A8%E8%AE%BA/" title="C++类的大小讨论"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="C++类的大小讨论"/></a><div class="content"><a class="title" href="/2021/06/01/C++%E7%B1%BB%E7%9A%84%E5%A4%A7%E5%B0%8F%E8%AE%A8%E8%AE%BA/" title="C++类的大小讨论">C++类的大小讨论</a><time datetime="2021-06-01T15:22:25.986Z" title="发表于 2021-06-01 23:22:25">2021-06-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/06/01/const%E9%99%90%E5%AE%9A%E7%AC%A6%E8%AF%A6%E8%A7%A3/" title="无题"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2021/06/01/const%E9%99%90%E5%AE%9A%E7%AC%A6%E8%AF%A6%E8%A7%A3/" title="无题">无题</a><time datetime="2021-06-01T15:18:18.952Z" title="发表于 2021-06-01 23:18:18">2021-06-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/06/01/leecode%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E4%B8%B2%E9%A2%98%E8%A7%A3/" title="leecode最长回文串题解"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="leecode最长回文串题解"/></a><div class="content"><a class="title" href="/2021/06/01/leecode%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E4%B8%B2%E9%A2%98%E8%A7%A3/" title="leecode最长回文串题解">leecode最长回文串题解</a><time datetime="2021-06-01T11:17:55.012Z" title="发表于 2021-06-01 19:17:55">2021-06-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/06/01/%E6%8E%A5%E5%8F%A3%E7%BB%A7%E6%89%BF%E5%92%8C%E5%AE%9E%E7%8E%B0%E7%BB%A7%E6%89%BF%EF%BC%88pure-virtual,virtual,non-virtual)/" title="区别接口继承和实现继承"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="区别接口继承和实现继承"/></a><div class="content"><a class="title" href="/2021/06/01/%E6%8E%A5%E5%8F%A3%E7%BB%A7%E6%89%BF%E5%92%8C%E5%AE%9E%E7%8E%B0%E7%BB%A7%E6%89%BF%EF%BC%88pure-virtual,virtual,non-virtual)/" title="区别接口继承和实现继承">区别接口继承和实现继承</a><time datetime="2021-06-01T09:17:16.612Z" title="发表于 2021-06-01 17:17:16">2021-06-01</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By 橙</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"></div><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
