@@ -1,13 +1,13 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Linux处理目标文件的工具 | ZeeCloud</title><meta name="keywords" content="操作系统,Linux,编译原理"><meta name="author" content="橙"><meta name="copyright" content="橙"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="AR描述 ar命令用于创建归档文件（archive），或从归档文件中提取、添加、删除成员文件。最常见的用法是将目标文件(.o)打包为静态链接库(.a)。 命令格式ar [ - ] p [mod] 归档文件 [成员文件…]  p：必选参数，只能选一个  -r：插入成员文件…存档(带替换)。此操作与q的不同之处在于，如果先前存在的成员名称与正在添加的成员的名称相同，则替换掉重名的成员文件.如果成员中有">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Linux处理目标文件的工具 | ZeeCloud</title><meta name="keywords" content="操作系统,Linux,编译原理"><meta name="author" content="橙"><meta name="copyright" content="橙"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="AR描述 ar命令用于创建归档文件（archive），或从归档文件中提取、添加、删除成员文件。最常见的用法是将目标文件(.o)打包为静态链接库(.a)。命令格式  ar  p [mod] 归档文件 [成员文件…]   p：必选参数，只能选一个  -r：插入成员文件…存档(带替换)。此操作与q的不同之处在于，如果先前存在的成员名称与正在添加的成员的名称相同，则替换掉重名的成员文件.如果成员中有一个文">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux处理目标文件的工具">
 <meta property="og:url" content="http://example.com/2021/06/02/Linux%E5%A4%84%E7%90%86%E7%9B%AE%E6%A0%87%E6%96%87%E4%BB%B6%E7%9A%84%E5%B7%A5%E5%85%B7/index.html">
 <meta property="og:site_name" content="ZeeCloud">
-<meta property="og:description" content="AR描述 ar命令用于创建归档文件（archive），或从归档文件中提取、添加、删除成员文件。最常见的用法是将目标文件(.o)打包为静态链接库(.a)。 命令格式ar [ - ] p [mod] 归档文件 [成员文件…]  p：必选参数，只能选一个  -r：插入成员文件…存档(带替换)。此操作与q的不同之处在于，如果先前存在的成员名称与正在添加的成员的名称相同，则替换掉重名的成员文件.如果成员中有">
+<meta property="og:description" content="AR描述 ar命令用于创建归档文件（archive），或从归档文件中提取、添加、删除成员文件。最常见的用法是将目标文件(.o)打包为静态链接库(.a)。命令格式  ar  p [mod] 归档文件 [成员文件…]   p：必选参数，只能选一个  -r：插入成员文件…存档(带替换)。此操作与q的不同之处在于，如果先前存在的成员名称与正在添加的成员的名称相同，则替换掉重名的成员文件.如果成员中有一个文">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg">
 <meta property="article:published_time" content="2021-06-02T07:57:09.867Z">
-<meta property="article:modified_time" content="2021-06-02T07:56:35.208Z">
+<meta property="article:modified_time" content="2021-06-02T08:07:46.308Z">
 <meta property="article:author" content="橙">
 <meta property="article:tag" content="操作系统">
 <meta property="article:tag" content="Linux">
@@ -60,7 +60,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2021-06-02 15:56:35'
+  postUpdate: '2021-06-02 16:07:46'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -142,10 +142,12 @@
           document.documentElement.classList.remove('hide-aside')
         }
       }
-    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://i.loli.net/2021/06/01/ZUNfC6gGcO5ykdB.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">ZeeCloud</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Linux处理目标文件的工具</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-06-02T07:57:09.867Z" title="发表于 2021-06-02 15:57:09">2021-06-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-06-02T07:56:35.208Z" title="更新于 2021-06-02 15:56:35">2021-06-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">学习总结</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Linux处理目标文件的工具"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="AR"><a href="#AR" class="headerlink" title="AR"></a>AR</h1><h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><ul>
-<li><p>ar命令用于创建归档文件（archive），或从归档文件中提取、添加、删除成员文件。最常见的用法是将目标文件(.o)打包为静态链接库(.a)。</p>
-<h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><p>ar [ - ] p [mod] 归档文件 [成员文件…]  <br>p：必选参数，只能选一个</p>
-</li>
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://i.loli.net/2021/06/01/ZUNfC6gGcO5ykdB.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">ZeeCloud</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Linux处理目标文件的工具</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-06-02T07:57:09.867Z" title="发表于 2021-06-02 15:57:09">2021-06-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-06-02T08:07:46.308Z" title="更新于 2021-06-02 16:07:46">2021-06-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">学习总结</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Linux处理目标文件的工具"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="AR"><a href="#AR" class="headerlink" title="AR"></a>AR</h1><h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><ul>
+<li>ar命令用于创建归档文件（archive），或从归档文件中提取、添加、删除成员文件。最常见的用法是将目标文件(.o)打包为静态链接库(.a)。<h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2></li>
+</ul>
+<p>ar  p [mod] 归档文件 [成员文件…]  </p>
+<p>p：必选参数，只能选一个</p>
+<ul>
 <li><p>-r：插入成员文件…存档(带替换)。此操作与q的不同之处在于，如果先前存在的成员名称与正在添加的成员的名称相同，则替换掉重名的成员文件.<br>如果成员中有一个文件…不存在，ar将显示一条错误消息，并保留与该名称匹配的存档。任何现有成员不受干扰。<br>默认情况下，新成员添加在文件的末尾;但是您可以使用其中一个修饰符a、b或i来请求相对于某些现有成员的位置。</p>
 </li>
 <li><p>-d：从存档中删除模块。指定要删除的模块的名称为成员…;如果没有指定要删除的文件，则存档将保持原样。如果指定了–v修饰符，ar会在删除模块时列出每个模块。</p>
@@ -180,9 +182,9 @@
 <li>strings命令 显示 每个 指定的 file 文件里 包含的 所有 有 4个 (或者 用 选项 指定 的 数字) 以上 连续 可打印 字符 的 字符串, 在 之后紧跟着  一个 不可 打印 的 字符. 默认 情况 下, 它 只显示 目标 文件 初始化 和装载 段 的 字符串; 对于 其它 类型 的 文件 它 显示 整个 文件 里 包含 的 所有字符串.</li>
 <li>strings 一般 用来 查看 非 文本 文件 的 内容.</li>
 </ul>
-<h2 id="命令格式-1"><a href="#命令格式-1" class="headerlink" title="命令格式"></a>命令格式</h2><p>strings [-a] [-f][-v] file</p>
+<h2 id="命令格式-1"><a href="#命令格式-1" class="headerlink" title="命令格式"></a>命令格式</h2><p>strings 参数 目标文件</p>
 <ul>
-<li><p>=a：不 只是 扫描 目标 文件 初始化 和 装载 段, 而是 扫描 整个 文件.</p>
+<li><p>-a：不 只是 扫描 目标 文件 初始化 和 装载 段, 而是 扫描 整个 文件.</p>
 </li>
 <li><p>-f：在 显示 字符串 之前 先 显示 文件名.</p>
 </li>
@@ -194,34 +196,23 @@
 </ul>
 <p>对于每一个符号来说，其类型如果是小写的，则表明该符号是local的；大写则表明该符号是global(external)的。</p>
 <ul>
-<li><p>A：该符号的值是绝对的，在以后的链接过程中，不允许进行改变。这样的符号值，常常出现在中断向量表中，例如用符号来表示各个中断向量函数在中断向量表中的位置。</p>
-</li>
-<li><p>B：该符号的值出现在非初始化数据段(bss)中。例如，在一个文件中定义全局static int test。则该符号test的类型为b，位于bss section中。其值表示该符号在bss段中的偏移。一般而言，bss段分配于RAM中。</p>
-</li>
-<li><p>C：该符号为common。common symbol是未初始话数据段。该符号没有包含于一个普通section中。只有在链接过程中才进行分配。符号的值表示该符号需要的字节数。例如在一个c文件中，定义int test，并且该符号在别的地方会被引用，则该符号类型即为C。否则其类型为B。</p>
-</li>
-<li><p>D：该符号位于初始化数据段中。一般来说，分配到data section中。<br>例如：定义全局int baud_table[5] = {9600, 19200, 38400, 57600, 115200}，会分配到初始化数据段中。</p>
-</li>
-<li><p>G：该符号也位于初始化数据段中。主要用于small object提高访问small data object的一种方式。</p>
-</li>
-<li><p>I：该符号是对另一个符号的间接引用。</p>
-</li>
-<li><p>N：该符号是一个debugging符号。</p>
-</li>
-<li><p>R：该符号位于只读数据区。<br>例如定义全局const int test[] = {123, 123};则test就是一个只读数据区的符号。<br>值得注意的是，如果在一个函数中定义const char * test = “abc”, const char test_int = 3。使用nm都不会得到符号信息，但是字符串”abc”分配于只读存储器中，test在rodata section中，大小为4。</p>
-</li>
-<li><p>S：符号位于非初始化数据区，用于small object。</p>
-</li>
-<li><p>T：该符号位于代码区text section。</p>
-</li>
-<li><p>U：该符号在当前文件中是未定义的，即该符号的定义在别的文件中。<br>例如，当前文件调用另一个文件中定义的函数，在这个被调用的函数在当前就是未定义的；但是在定义它的文件中类型是T。但是对于全局变量来说，在定义它的文件中，其符号类型为C，在使用它的文件中，其类型为U。</p>
-</li>
-<li><p>V：该符号是一个weak object。</p>
-</li>
-<li><p>W：The symbol is a weak symbol that has not been specifically tagged as a weak object symbol.</p>
-</li>
-<li><p>? ：该符号类型没有定义<br>库或对象名 如果您指定了 -A 选项，则 nm 命令只报告与该文件有关的或者库或者对象名。</p>
-<h2 id="命令格式-2"><a href="#命令格式-2" class="headerlink" title="命令格式"></a>命令格式</h2></li>
+<li>A：该符号的值是绝对的，在以后的链接过程中，不允许进行改变。这样的符号值，常常出现在中断向量表中，例如用符号来表示各个中断向量函数在中断向量表中的位置。</li>
+<li>B：该符号的值出现在非初始化数据段(bss)中。例如，在一个文件中定义全局static int test。则该符号test的类型为b，位于bss section中。其值表示该符号在bss段中的偏移。一般而言，bss段分配于RAM中。</li>
+<li>C：该符号为common。common symbol是未初始话数据段。该符号没有包含于一个普通section中。只有在链接过程中才进行分配。符号的值表示该符号需要的字节数。例如在一个c文件中，定义int test，并且该符号在别的地方会被引用，则该符号类型即为C。否则其类型为B。</li>
+<li>D：该符号位于初始化数据段中。一般来说，分配到data section中。<br>例如：定义全局int baud_table[5] = {9600, 19200, 38400, 57600, 115200}，会分配到初始化数据段中。</li>
+<li>G：该符号也位于初始化数据段中。主要用于small object提高访问small data object的一种方式。</li>
+<li>I：该符号是对另一个符号的间接引用。</li>
+<li>N：该符号是一个debugging符号。</li>
+<li>R：该符号位于只读数据区。<br>例如定义全局const int test[] = {123, 123};则test就是一个只读数据区的符号。<br>值得注意的是，如果在一个函数中定义const char * test = “abc”, const char test_int = 3。使用nm都不会得到符号信息，但是字符串”abc”分配于只读存储器中，test在rodata section中，大小为4。</li>
+<li>S：符号位于非初始化数据区，用于small object。</li>
+<li>T：该符号位于代码区text section。</li>
+<li>U：该符号在当前文件中是未定义的，即该符号的定义在别的文件中。<br>例如，当前文件调用另一个文件中定义的函数，在这个被调用的函数在当前就是未定义的；但是在定义它的文件中类型是T。但是对于全局变量来说，在定义它的文件中，其符号类型为C，在使用它的文件中，其类型为U。</li>
+<li>V：该符号是一个weak object。</li>
+<li>W：The symbol is a weak symbol that has not been specifically tagged as a weak object symbol.</li>
+<li>? ：该符号类型没有定义<br>库或对象名 如果您指定了 -A 选项，则 nm 命令只报告与该文件有关的或者库或者对象名。<h2 id="命令格式-2"><a href="#命令格式-2" class="headerlink" title="命令格式"></a>命令格式</h2></li>
+</ul>
+<p>nm 参数 目标文件</p>
+<ul>
 <li><p>-A ： 每行或者显示全路径名称或者显示对象库名。</p>
 </li>
 <li><p>-B：在 Berkeley 软件分发（BSD）格式中显示输出：<br>值   类型   名称</p>
@@ -266,8 +257,10 @@
 </li>
 <li><p>显示 libc.a 中所有 64 位对象符号，忽略所有 32 位对象：<br>nm -X64 /usr/lib/libc.a</p>
 <h1 id="SIZE"><a href="#SIZE" class="headerlink" title="SIZE"></a>SIZE</h1><h2 id="描述-3"><a href="#描述-3" class="headerlink" title="描述"></a>描述</h2><p>size  程序列出目标文件(object)  或库文件 的段节(section)大小 — 以及 总共大小.  默认情况下, 对每个 目标文件 或 存档库中的 每个模块 产生 一行 输出.</p>
-<h2 id="命令格式-3"><a href="#命令格式-3" class="headerlink" title="命令格式"></a>命令格式</h2><p>size  [ - ] 参数 目标文件名</p>
-</li>
+<h2 id="命令格式-3"><a href="#命令格式-3" class="headerlink" title="命令格式"></a>命令格式</h2></li>
+</ul>
+<p>size   参数 目标文件名</p>
+<ul>
 <li><p>A|B|–format compatibility使用 这几个 选项, 你 可以 让 GNU size 的 输出效果 类似于   System  Vsize   (使用 ‘-A’, 或 ‘’–format=sysv’), 或 Berkeley size (使用 ‘-B’,或 ‘–format=berkeley’). 默认情况下 是 类似于 Berkeley 的 单行格式.</p>
 </li>
 <li><p>-d</p>
@@ -324,7 +317,7 @@
 </ul>
 <h2 id="常见用法-4"><a href="#常见用法-4" class="headerlink" title="常见用法"></a>常见用法</h2><h1 id="OBJDUMP"><a href="#OBJDUMP" class="headerlink" title="OBJDUMP"></a>OBJDUMP</h1><h2 id="描述-5"><a href="#描述-5" class="headerlink" title="描述"></a>描述</h2><ul>
 <li><p>所有二进制工具之母。能够显示一个目标文件中所有的信息。最大的作用是反汇编.text节中的二进制指令。</p>
-<h2 id="命令格式-5"><a href="#命令格式-5" class="headerlink" title="命令格式"></a>命令格式</h2><p>objdump [参数] 目标文件名</p>
+<h2 id="命令格式-5"><a href="#命令格式-5" class="headerlink" title="命令格式"></a>命令格式</h2><p>objdump 参数 目标文件名</p>
 </li>
 <li><p>-a </p>
 </li>
@@ -438,7 +431,8 @@
 <li>对于 a.out 程序, ldd 简单的 进行 fork 和 exec 各个 程序, 执行 程序 时  argc 参数  等于零,  a.out  的 动态连接器 (dynamic linker) ld.so, 正常情况下 能够调入 共享库, 注意到 这个 特殊情况, 从而 显示出 依赖关系.</li>
 <li>对于 ELF 程序, ldd 设置 适当的 环境变量集, 然后 fork  和  exec  各个  程序.ELF  的  动态连接器,  ld-linux.so, 正常情况下 能够 调入 共享库, 注意到 这个特殊情况, 从而 显示出 依赖关系.</li>
 </ul>
-<h2 id="命令格式-6"><a href="#命令格式-6" class="headerlink" title="命令格式"></a>命令格式</h2><ul>
+<h2 id="命令格式-6"><a href="#命令格式-6" class="headerlink" title="命令格式"></a>命令格式</h2><p>ldd 参数 目标文件</p>
+<ul>
 <li>-v     显示 ldd 的 版本号.</li>
 <li>-V     显示 动态连接器 ld.so 的 版本号.</li>
 <li>-d     进行 重定位(relocation), 而且 报告 缺少的 函数 (仅限于 ELF).</li>
