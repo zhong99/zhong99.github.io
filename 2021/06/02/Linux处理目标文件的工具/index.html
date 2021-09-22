@@ -1,0 +1,453 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Linux处理目标文件的工具 | ZeeCloud</title><meta name="keywords" content="操作系统,Linux,编译原理"><meta name="author" content="橙"><meta name="copyright" content="橙"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="AR描述 ar命令用于创建归档文件（archive），或从归档文件中提取、添加、删除成员文件。最常见的用法是将目标文件(.o)打包为静态链接库(.a)。命令格式  ar  p [mod] 归档文件 [成员文件…]   p：必选参数，只能选一个  -r：插入成员文件…存档(带替换)。此操作与q的不同之处在于，如果先前存在的成员名称与正在添加的成员的名称相同，则替换掉重名的成员文件.如果成员中有一个文">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux处理目标文件的工具">
+<meta property="og:url" content="http://example.com/2021/06/02/Linux%E5%A4%84%E7%90%86%E7%9B%AE%E6%A0%87%E6%96%87%E4%BB%B6%E7%9A%84%E5%B7%A5%E5%85%B7/index.html">
+<meta property="og:site_name" content="ZeeCloud">
+<meta property="og:description" content="AR描述 ar命令用于创建归档文件（archive），或从归档文件中提取、添加、删除成员文件。最常见的用法是将目标文件(.o)打包为静态链接库(.a)。命令格式  ar  p [mod] 归档文件 [成员文件…]   p：必选参数，只能选一个  -r：插入成员文件…存档(带替换)。此操作与q的不同之处在于，如果先前存在的成员名称与正在添加的成员的名称相同，则替换掉重名的成员文件.如果成员中有一个文">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg">
+<meta property="article:published_time" content="2021-06-02T07:57:09.867Z">
+<meta property="article:modified_time" content="2021-06-02T08:07:46.308Z">
+<meta property="article:author" content="橙">
+<meta property="article:tag" content="操作系统">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="编译原理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg"><link rel="shortcut icon" href="/img/favicon.jpeg"><link rel="canonical" href="http://example.com/2021/06/02/Linux%E5%A4%84%E7%90%86%E7%9B%AE%E6%A0%87%E6%96%87%E4%BB%B6%E7%9A%84%E5%B7%A5%E5%85%B7/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Linux处理目标文件的工具',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-06-02 16:07:46'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://i.loli.net/2021/06/01/ZUNfC6gGcO5ykdB.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">12</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">ZeeCloud</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Linux处理目标文件的工具</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-06-02T07:57:09.867Z" title="发表于 2021-06-02 15:57:09">2021-06-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-06-02T08:07:46.308Z" title="更新于 2021-06-02 16:07:46">2021-06-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">学习总结</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Linux处理目标文件的工具"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="AR"><a href="#AR" class="headerlink" title="AR"></a>AR</h1><h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><ul>
+<li>ar命令用于创建归档文件（archive），或从归档文件中提取、添加、删除成员文件。最常见的用法是将目标文件(.o)打包为静态链接库(.a)。<h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2></li>
+</ul>
+<p>ar  p [mod] 归档文件 [成员文件…]  </p>
+<p>p：必选参数，只能选一个</p>
+<ul>
+<li><p>-r：插入成员文件…存档(带替换)。此操作与q的不同之处在于，如果先前存在的成员名称与正在添加的成员的名称相同，则替换掉重名的成员文件.<br>如果成员中有一个文件…不存在，ar将显示一条错误消息，并保留与该名称匹配的存档。任何现有成员不受干扰。<br>默认情况下，新成员添加在文件的末尾;但是您可以使用其中一个修饰符a、b或i来请求相对于某些现有成员的位置。</p>
+</li>
+<li><p>-d：从存档中删除模块。指定要删除的模块的名称为成员…;如果没有指定要删除的文件，则存档将保持原样。如果指定了–v修饰符，ar会在删除模块时列出每个模块。</p>
+</li>
+<li><p>-m：使用此操作移动归档中的成员。如果在多个成员中定义了符号，则存档中成员的顺序会影响程序使用库链接的方式。如果没有使用“m”修饰符，则将您在成员参数中指定的任何成员移动到存档的末尾;您可以使用a、b或i修饰符将它们移动到指定的位置。</p>
+</li>
+<li><p>-p：将存档文件的指定成员打印到标准输出文件中。如果指定了v修饰符，在将该成员的内容复制到标准输出之前先显示成员名称。如果没有指定成员参数，则将打印归档文件中的所有文件。</p>
+</li>
+<li><p>-q：快速追加。增加新模块到归档文件的结尾处。并不检查是否需要替换。‘a’，‘b’，或’i’选项对此操作没有影响，模块总是追加的归档文件的结尾处。如果加上–v选项则列出每个模块。 这时，归档文件的符号表没有更新，可以用’ar s’或ranlib来更新归档文件的符号表索引。</p>
+</li>
+<li><p>-x：从存档中提取成员(已命名的成员)。可以使用v修饰符来显示已提取成功的成员。如果不指定成员，则提取归档文件中的所有文件。</p>
+</li>
+</ul>
+<p>mod：可选参数，可多选:</p>
+<ul>
+<li><p>-c：创建存档。当您请求更新时，如果指定的归档文件不存在，则始终创建它。但是，除非预先指定要使用-c修饰符创建它，否则归档文件不存在将发出警告。</p>
+</li>
+<li><p>-v：此修饰符请求操作的详细版本。当添加修饰符v时，许多操作都会显示附加信息，比如处理过的文件名。</p>
+</li>
+<li><p>-u：通常情况下,ar r……将列出的所有文件插入存档。如果只想在列表中插入那些比同名的现有成员更新的文件，请使用此修饰符。u修饰符只允许用于操作r (replace)。特别是，不允许使用qu组合，因为检查时间戳会失去q操作带来的任何速度优势。</p>
+</li>
+<li><p>-s：将成员文件索引写入存档，或更新现有索引，即使没有对存档进行其他更改。您可以在任何操作中使用此修饰符标志，也可以单独使用。在归档文件上运行ar -s相当于在其上面运行ranlib。<br>  更多信息请参考man手册</p>
+<h2 id="常见用法"><a href="#常见用法" class="headerlink" title="常见用法"></a>常见用法</h2><p>静态库的制作：<br>a. 将库源文件编译成.o的目标文件</p>
+</li>
+</ul>
+<p>$gcc -c test.c -o test.o</p>
+<p>b. 将.o文件制作成静态库文件,静态库文件名的命名规范是以lib为前缀，紧接着跟静态库名，扩展名为.a。</p>
+<p>$ar rcsv libtest.a test.o</p>
+<p>c. 编译test.c 同时链接到已制作的静态库<br> -L库的路径（-L.表示当前目录） -l库名</p>
+<p>$gcc -o test test.c -L. -ltest</p>
+<h1 id="STRINGS"><a href="#STRINGS" class="headerlink" title="STRINGS"></a>STRINGS</h1><h2 id="描述-1"><a href="#描述-1" class="headerlink" title="描述"></a>描述</h2><ul>
+<li>strings命令 显示 每个 指定的 file 文件里 包含的 所有 有 4个 (或者 用 选项 指定 的 数字) 以上 连续 可打印 字符 的 字符串, 在 之后紧跟着  一个 不可 打印 的 字符. 默认 情况 下, 它 只显示 目标 文件 初始化 和装载 段 的 字符串; 对于 其它 类型 的 文件 它 显示 整个 文件 里 包含 的 所有字符串.</li>
+<li>strings 一般 用来 查看 非 文本 文件 的 内容.</li>
+</ul>
+<h2 id="命令格式-1"><a href="#命令格式-1" class="headerlink" title="命令格式"></a>命令格式</h2><p>strings 参数 目标文件</p>
+<ul>
+<li><p>-a：不 只是 扫描 目标 文件 初始化 和 装载 段, 而是 扫描 整个 文件.</p>
+</li>
+<li><p>-f：在 显示 字符串 之前 先 显示 文件名.</p>
+</li>
+<li><p>-v：在 标准 输出 打印 strings 命令 的 版本号 然后 退出.</p>
+</li>
+</ul>
+<h2 id="常见用法-1"><a href="#常见用法-1" class="headerlink" title="常见用法"></a>常见用法</h2><h1 id="NM"><a href="#NM" class="headerlink" title="NM"></a>NM</h1><h2 id="描述-2"><a href="#描述-2" class="headerlink" title="描述"></a>描述</h2><ul>
+<li>nm列出一个目标文件符号表定义的符号</li>
+</ul>
+<p>对于每一个符号来说，其类型如果是小写的，则表明该符号是local的；大写则表明该符号是global(external)的。</p>
+<ul>
+<li>A：该符号的值是绝对的，在以后的链接过程中，不允许进行改变。这样的符号值，常常出现在中断向量表中，例如用符号来表示各个中断向量函数在中断向量表中的位置。</li>
+<li>B：该符号的值出现在非初始化数据段(bss)中。例如，在一个文件中定义全局static int test。则该符号test的类型为b，位于bss section中。其值表示该符号在bss段中的偏移。一般而言，bss段分配于RAM中。</li>
+<li>C：该符号为common。common symbol是未初始话数据段。该符号没有包含于一个普通section中。只有在链接过程中才进行分配。符号的值表示该符号需要的字节数。例如在一个c文件中，定义int test，并且该符号在别的地方会被引用，则该符号类型即为C。否则其类型为B。</li>
+<li>D：该符号位于初始化数据段中。一般来说，分配到data section中。<br>例如：定义全局int baud_table[5] = {9600, 19200, 38400, 57600, 115200}，会分配到初始化数据段中。</li>
+<li>G：该符号也位于初始化数据段中。主要用于small object提高访问small data object的一种方式。</li>
+<li>I：该符号是对另一个符号的间接引用。</li>
+<li>N：该符号是一个debugging符号。</li>
+<li>R：该符号位于只读数据区。<br>例如定义全局const int test[] = {123, 123};则test就是一个只读数据区的符号。<br>值得注意的是，如果在一个函数中定义const char * test = “abc”, const char test_int = 3。使用nm都不会得到符号信息，但是字符串”abc”分配于只读存储器中，test在rodata section中，大小为4。</li>
+<li>S：符号位于非初始化数据区，用于small object。</li>
+<li>T：该符号位于代码区text section。</li>
+<li>U：该符号在当前文件中是未定义的，即该符号的定义在别的文件中。<br>例如，当前文件调用另一个文件中定义的函数，在这个被调用的函数在当前就是未定义的；但是在定义它的文件中类型是T。但是对于全局变量来说，在定义它的文件中，其符号类型为C，在使用它的文件中，其类型为U。</li>
+<li>V：该符号是一个weak object。</li>
+<li>W：The symbol is a weak symbol that has not been specifically tagged as a weak object symbol.</li>
+<li>? ：该符号类型没有定义<br>库或对象名 如果您指定了 -A 选项，则 nm 命令只报告与该文件有关的或者库或者对象名。<h2 id="命令格式-2"><a href="#命令格式-2" class="headerlink" title="命令格式"></a>命令格式</h2></li>
+</ul>
+<p>nm 参数 目标文件</p>
+<ul>
+<li><p>-A ： 每行或者显示全路径名称或者显示对象库名。</p>
+</li>
+<li><p>-B：在 Berkeley 软件分发（BSD）格式中显示输出：<br>值   类型   名称</p>
+</li>
+<li><p>-C ：限制解码（demangle） C++ 名称。缺省是解码所有 C++ 符号名。<br>注:<br>C++ 对象文件中的符号在被使用前它们的名称已经被解码了。</p>
+</li>
+<li><p>-d： 用十进制显示符号的值和大小。这是缺省的。</p>
+</li>
+<li><p>-e：只显示静态的和外部的（全局）符号。</p>
+</li>
+<li><p>-f ：显示完整的输出，包括冗余的 .text、 .data 以及 .bss 符号，这些在通常都是被限制的。</p>
+</li>
+<li><p>-g：只显示外部的（全局）符号。</p>
+</li>
+<li><p>-h： 限制输出头数据的显示。</p>
+</li>
+<li><p>-l：通过给 WEAK 符号的编码键附加一个 * 来区分 WEAK 和 GLOBAL 符号。如果和 -P 选项一起使用， WEAK 符号的符号类型显示如下：<br>V<br>Weak Data 符号<br>W<br>Weak Text 符号<br>w<br>Weak 未定义符号<br>Z<br>Weak bss 符号</p>
+</li>
+<li><p>-o：用八进制而不是十进制数来显示符号的值和大小。</p>
+</li>
+<li><p>-P：以标准可移植输出格式显示信息：<br>库／对象名　 名称   类型   值   大小<br>该格式以十六进制符号表示法显示数字值，除非您用 -t、-d 或 -o 标志指定不同的格式。<br>如果指定了 -A 标志 -P 标志只显示 库／对象名字段。同样，-P 标志只显示大小适用的符号大小字段。</p>
+</li>
+<li><p>-p：不排序。输出按符号表顺序打印。</p>
+</li>
+<li><p>-r：倒序排序。</p>
+</li>
+<li><p>-T：把可能会溢出它的列的每个名字截短，使显示的名字的最后一个字符是星号（ * ）。缺省情况下，nm 显示列出的符号的全名，并且一个比为其设置的列的宽度长的名称会引起名称后的每个列无法对齐。</p>
+</li>
+<li><p>-t Format    显示指定格式下的数字值，其中 Format 参数是以下符号表示法之一：<br>d<br>十进制符号表示法。这是 nm 命令的缺省格式。<br>o<br>八进制符号表示法。<br>x<br>十六进制符号表示法。</p>
+</li>
+<li><p>-u：只显示未定义符号。</p>
+</li>
+<li><p>-v： 按值而不是按字母表顺序排序输出。</p>
+</li>
+<li><p>-x：用十六进制而不是十进制数来显示符号的值和大小。</p>
+</li>
+<li><p>-X mode ：指定 nm 应该检查的对象文件的类型。 mode 必须是下列之一：<br>32<br>只处理 32 位对象文件<br>64<br>只处理 64 位对象文件</p>
+<h2 id="常见用法-2"><a href="#常见用法-2" class="headerlink" title="常见用法"></a>常见用法</h2></li>
+<li><p>列出 a.out 对象文件的静态和外部符号，请输入：<br>nm -e a.out</p>
+</li>
+<li><p>以十六进制显示符号大小和值并且按值排序符号，请输入：<br>nm -xv a.out</p>
+</li>
+<li><p>显示 libc.a 中所有 64 位对象符号，忽略所有 32 位对象：<br>nm -X64 /usr/lib/libc.a</p>
+<h1 id="SIZE"><a href="#SIZE" class="headerlink" title="SIZE"></a>SIZE</h1><h2 id="描述-3"><a href="#描述-3" class="headerlink" title="描述"></a>描述</h2><p>size  程序列出目标文件(object)  或库文件 的段节(section)大小 — 以及 总共大小.  默认情况下, 对每个 目标文件 或 存档库中的 每个模块 产生 一行 输出.</p>
+<h2 id="命令格式-3"><a href="#命令格式-3" class="headerlink" title="命令格式"></a>命令格式</h2></li>
+</ul>
+<p>size   参数 目标文件名</p>
+<ul>
+<li><p>A|B|–format compatibility使用 这几个 选项, 你 可以 让 GNU size 的 输出效果 类似于   System  Vsize   (使用 ‘-A’, 或 ‘’–format=sysv’), 或 Berkeley size (使用 ‘-B’,或 ‘–format=berkeley’). 默认情况下 是 类似于 Berkeley 的 单行格式.</p>
+</li>
+<li><p>-d</p>
+</li>
+<li><p>-o</p>
+</li>
+<li><p>-x</p>
+</li>
+<li><p>–radix number<br>使用 这几个 选项, 你 可以 让 各个 段节 的 大小 以<br>十进制  (‘-d’,  或 ‘–radix  10’);<br>八进制 (‘’-o’, 或 ‘’–radix 8’); 或<br>十六进制 (‘’-x’, 或’–radix  16’)<br>数字  的  格式   显示.   ‘’–radix   number’   只支持三个数值参数 (8, 10, 16). 总共大小 以 两种进制 给出; ‘’-d’ 或 ‘’-x’ 的十进制 和 十六进制 输出, 或 ‘’-o’ 的 八进制 和 十六进制 输出.</p>
+</li>
+</ul>
+<h2 id="常见用法-3"><a href="#常见用法-3" class="headerlink" title="常见用法"></a>常见用法</h2><h1 id="READELF"><a href="#READELF" class="headerlink" title="READELF"></a>READELF</h1><h2 id="描述-4"><a href="#描述-4" class="headerlink" title="描述"></a>描述</h2><ul>
+<li><p>显示一个目标文件的完整结构，包括ELF头中编码的所有信息。包含SIZE和NM的功能。</p>
+<h2 id="命令格式-4"><a href="#命令格式-4" class="headerlink" title="命令格式"></a>命令格式</h2><p>readelf 参数 目标文件名</p>
+</li>
+<li><p>-a ：–all 显示全部信息,等价于 -h -l -S -s -r -d -V -A -I</p>
+</li>
+<li><p>-h ：–file-header 显示elf文件开始的文件头信息. </p>
+</li>
+<li><p>-l ：–program-headers  ；–segments 显示程序头（段头）信息(如果有的话)。 </p>
+</li>
+<li><p>-S ：–section-headers  ；–sections 显示节头信息(如果有的话)。 </p>
+</li>
+<li><p>-g ：–section-groups 显示节组信息(如果有的话)。</p>
+</li>
+<li><p>-t ：–section-details 显示节的详细信息(-S的)。 </p>
+</li>
+<li><p>-s ：–syms  ；–symbols 显示符号表段中的项（如果有的话）。 </p>
+</li>
+<li><p>-e ：–headers 显示全部头信息，等价于: -h -l -S </p>
+</li>
+<li><p>-n ：–notes 显示note段（内核注释）的信息。 </p>
+</li>
+<li><p>-r ：–relocs 显示可重定位段的信息。 </p>
+</li>
+<li><p>-u ：–unwind 显示unwind段信息。当前只支持IA64 ELF的unwind段信息。 </p>
+</li>
+<li><p>-d ：–dynamic 显示动态段的信息。 </p>
+</li>
+<li><p>-V ：–version-info 显示版本段的信息。 </p>
+</li>
+<li><p>-A ：–arch-specific 显示CPU构架信息。 </p>
+</li>
+<li><p>-D ：–use-dynamic 使用动态段中的符号表显示符号，而不是使用符号段。 </p>
+</li>
+<li><p>-I ：–histogram 显示符号的时候，显示bucket list长度的柱状图。 </p>
+</li>
+<li><p>-v ：–version 显示readelf的版本信息。 </p>
+</li>
+<li><p>-H ：–help 显示readelf所支持的命令行选项。 </p>
+</li>
+<li><p>-W ：–wide 宽行输出。 </p>
+</li>
+</ul>
+<h2 id="常见用法-4"><a href="#常见用法-4" class="headerlink" title="常见用法"></a>常见用法</h2><h1 id="OBJDUMP"><a href="#OBJDUMP" class="headerlink" title="OBJDUMP"></a>OBJDUMP</h1><h2 id="描述-5"><a href="#描述-5" class="headerlink" title="描述"></a>描述</h2><ul>
+<li><p>所有二进制工具之母。能够显示一个目标文件中所有的信息。最大的作用是反汇编.text节中的二进制指令。</p>
+<h2 id="命令格式-5"><a href="#命令格式-5" class="headerlink" title="命令格式"></a>命令格式</h2><p>objdump 参数 目标文件名</p>
+</li>
+<li><p>-a </p>
+</li>
+<li><p>-archive-header<br>显示档案库的成员信息,类似ls -l将lib*.a的信息列出。 </p>
+</li>
+<li><p>-b bfdname </p>
+</li>
+<li><p>-target=bfdname<br>指定目标码格式。这不是必须的，objdump能自动识别许多格式，比如：<br>objdump -b oasys -m vax -h fu.o<br>显示fu.o的头部摘要信息，明确指出该文件是Vax系统下用Oasys编译器生成的目标文件。objdump -i将给出这里可以指定的目标码格式列表。 </p>
+</li>
+<li><p>-C </p>
+</li>
+<li><p>-demangle [=style]<br>将底层的符号名解码成用户级名字，除了去掉所开头的下划线之外，还使得C++函数名以可理解的方式显示出来。 </p>
+</li>
+<li><p>-g</p>
+</li>
+<li><p>-debugging<br>显示调试信息。企图解析保存在文件中的调试信息并以C语言的语法显示出来。仅仅支持某些类型的调试信息。有些其他的格式被readelf -w支持。 </p>
+</li>
+<li><p>-e </p>
+</li>
+<li><p>-debugging-tags<br>类似-g选项，但是生成的信息是和ctags工具相兼容的格式。 </p>
+</li>
+<li><p>-d </p>
+</li>
+<li><p>-disassemble<br>从objfile中反汇编那些特定指令机器码的section。 </p>
+</li>
+<li><p>-D </p>
+</li>
+<li><p>-disassemble-all<br>与 -d 类似，但反汇编所有section.  </p>
+</li>
+<li><p>-EB| -EL </p>
+</li>
+<li><p>-endian={big|little}<br>指定目标文件的小端。这个项将影响反汇编出来的指令。在反汇编的文件没描述小端信息的时候用。例如S-records. </p>
+</li>
+<li><p>-f </p>
+</li>
+<li><p>-file-headers<br>显示objfile中每个文件的整体头部摘要信息。 </p>
+</li>
+<li><p>-h </p>
+</li>
+<li><p>-section-headers </p>
+</li>
+<li><p>-headers<br>显示目标文件各个section的头部摘要信息。 </p>
+</li>
+<li><p>-H </p>
+</li>
+<li><p>-help<br>简短的帮助信息。 </p>
+</li>
+<li><p>-i </p>
+</li>
+<li><p>-info<br>显示对于 -b 或者 -m 选项可用的架构和目标格式列表。 </p>
+</li>
+<li><p>-j name</p>
+</li>
+<li><p>-section=name<br>仅仅显示指定名称为name的section的信息 </p>
+</li>
+<li><p>-l</p>
+</li>
+<li><p>-line-numbers<br>用文件名和行号标注相应的目标代码，仅仅和-d、-D或者-r一起使用使用-ld和使用-d的区别不是很大，在源码级调试的时候有用，要求编译时使用了-g之类的调试编译选项。 </p>
+</li>
+<li><p>-m machine </p>
+</li>
+<li><p>-architecture=machine<br>指定反汇编目标文件时使用的架构，当待反汇编文件本身没描述架构信息的时候(比如S-records)，这个选项很有用。可以用-i选项列出这里能够指定的架构. </p>
+</li>
+<li><p>-r </p>
+</li>
+<li><p>-reloc<br>显示文件的重定位入口。如果和-d或者-D一起使用，重定位部分以反汇编后的格式显示出来。 </p>
+</li>
+<li><p>-R </p>
+</li>
+<li><p>-dynamic-reloc<br>显示文件的动态重定位入口，仅仅对于动态目标文件意义，比如某些共享库。 </p>
+</li>
+<li><p>-s </p>
+</li>
+<li><p>-full-contents<br>显示指定section的完整内容。默认所有的非空section都会被显示。 </p>
+</li>
+<li><p>-S </p>
+</li>
+<li><p>-source<br>尽可能反汇编出源代码，尤其当编译的时候指定了-g这种调试参数时，效果比较明显。隐含了-d参数。 </p>
+</li>
+<li><p>–show-raw-insn<br>反汇编的时候，显示每条汇编指令对应的机器码，如不指定–prefix-addresses，这将是缺省选项。 </p>
+</li>
+<li><p>–no-show-raw-insn<br>反汇编时，不显示汇编指令的机器码，如不指定–prefix-addresses，这将是缺省选项。 </p>
+</li>
+<li><p>–start-address=address<br>从指定地址开始显示数据，该选项影响-d、-r和-s选项的输出。 </p>
+</li>
+<li><p>–stop-address=address<br>显示数据直到指定地址为止，该项影响-d、-r和-s选项的输出。 </p>
+</li>
+<li><p>-t </p>
+</li>
+<li><p>-syms<br>显示文件的符号表入口。类似于nm -s提供的信息 </p>
+</li>
+<li><p>-T </p>
+</li>
+<li><p>-dynamic-syms<br>显示文件的动态符号表入口，仅仅对动态目标文件意义，比如某些共享库。它显示的信息类似于 nm -D|–dynamic 显示的信息。 </p>
+</li>
+<li><p>-V </p>
+</li>
+<li><p>-version<br>版本信息 </p>
+</li>
+<li><p>-x </p>
+</li>
+<li><p>-all-headers<br>显示所可用的头信息，包括符号表、重定位入口。-x 等价于-a -f -h -r -t 同时指定。 </p>
+</li>
+<li><p>-z </p>
+</li>
+<li><p>-disassemble-zeroes<br>一般反汇编输出将省略大块的零，该选项使得这些零块也被反汇编。 </p>
+</li>
+</ul>
+<h2 id="常见用法-5"><a href="#常见用法-5" class="headerlink" title="常见用法"></a>常见用法</h2><h1 id="LDD"><a href="#LDD" class="headerlink" title="LDD"></a>LDD</h1><h2 id="描述-6"><a href="#描述-6" class="headerlink" title="描述"></a>描述</h2><ul>
+<li>ldd  显示  每个  程序  需要 的 共享库 (shared library), 程序名 在 命令行 上给出. </li>
+<li>对于 a.out 程序, ldd 简单的 进行 fork 和 exec 各个 程序, 执行 程序 时  argc 参数  等于零,  a.out  的 动态连接器 (dynamic linker) ld.so, 正常情况下 能够调入 共享库, 注意到 这个 特殊情况, 从而 显示出 依赖关系.</li>
+<li>对于 ELF 程序, ldd 设置 适当的 环境变量集, 然后 fork  和  exec  各个  程序.ELF  的  动态连接器,  ld-linux.so, 正常情况下 能够 调入 共享库, 注意到 这个特殊情况, 从而 显示出 依赖关系.</li>
+</ul>
+<h2 id="命令格式-6"><a href="#命令格式-6" class="headerlink" title="命令格式"></a>命令格式</h2><p>ldd 参数 目标文件</p>
+<ul>
+<li>-v     显示 ldd 的 版本号.</li>
+<li>-V     显示 动态连接器 ld.so 的 版本号.</li>
+<li>-d     进行 重定位(relocation), 而且 报告 缺少的 函数 (仅限于 ELF).</li>
+<li>-r     对 数据目标 (data object) 和 函数  进行  重定位,  而且  报告  缺少的数据目标 (仅限于 ELF).</li>
+</ul>
+<h2 id="常见用法-6"><a href="#常见用法-6" class="headerlink" title="常见用法"></a>常见用法</h2><h1 id="更多内容请参考man手册"><a href="#更多内容请参考man手册" class="headerlink" title="更多内容请参考man手册"></a>更多内容请参考man手册</h1></article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><a class="post-meta__tags" href="/tags/Linux/">Linux</a><a class="post-meta__tags" href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">编译原理</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/06/03/Linux%E7%B3%BB%E7%BB%9F%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7/"><img class="prev-cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Linux系统监测工具</div></div></a></div><div class="next-post pull-right"><a href="/2021/06/01/C++%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/"><img class="next-cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">C++类型转换</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/05/31/hello-zeecloud/" title="你好 极酷！"><img class="cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-05-31</div><div class="title">你好 极酷！</div></div></a></div><div><a href="/2021/06/03/Linux系统调试工具/" title="Linux系统监测工具"><img class="cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-06-03</div><div class="title">Linux系统监测工具</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://i.loli.net/2021/06/01/ZUNfC6gGcO5ykdB.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">橙</div><div class="author-info__description">Success requires accumulation</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">12</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://gitee.com/zhong-zhuocheng"><i></i><span>我的主页</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">橙 的个人博客</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#AR"><span class="toc-number">1.</span> <span class="toc-text">AR</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%8F%E8%BF%B0"><span class="toc-number">1.1.</span> <span class="toc-text">描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E6%A0%BC%E5%BC%8F"><span class="toc-number">1.2.</span> <span class="toc-text">命令格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text">常见用法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#STRINGS"><span class="toc-number">2.</span> <span class="toc-text">STRINGS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%8F%E8%BF%B0-1"><span class="toc-number">2.1.</span> <span class="toc-text">描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E6%A0%BC%E5%BC%8F-1"><span class="toc-number">2.2.</span> <span class="toc-text">命令格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95-1"><span class="toc-number">2.3.</span> <span class="toc-text">常见用法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#NM"><span class="toc-number">3.</span> <span class="toc-text">NM</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%8F%E8%BF%B0-2"><span class="toc-number">3.1.</span> <span class="toc-text">描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E6%A0%BC%E5%BC%8F-2"><span class="toc-number">3.2.</span> <span class="toc-text">命令格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95-2"><span class="toc-number">3.3.</span> <span class="toc-text">常见用法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SIZE"><span class="toc-number">4.</span> <span class="toc-text">SIZE</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%8F%E8%BF%B0-3"><span class="toc-number">4.1.</span> <span class="toc-text">描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E6%A0%BC%E5%BC%8F-3"><span class="toc-number">4.2.</span> <span class="toc-text">命令格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95-3"><span class="toc-number">4.3.</span> <span class="toc-text">常见用法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#READELF"><span class="toc-number">5.</span> <span class="toc-text">READELF</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%8F%E8%BF%B0-4"><span class="toc-number">5.1.</span> <span class="toc-text">描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E6%A0%BC%E5%BC%8F-4"><span class="toc-number">5.2.</span> <span class="toc-text">命令格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95-4"><span class="toc-number">5.3.</span> <span class="toc-text">常见用法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#OBJDUMP"><span class="toc-number">6.</span> <span class="toc-text">OBJDUMP</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%8F%E8%BF%B0-5"><span class="toc-number">6.1.</span> <span class="toc-text">描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E6%A0%BC%E5%BC%8F-5"><span class="toc-number">6.2.</span> <span class="toc-text">命令格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95-5"><span class="toc-number">6.3.</span> <span class="toc-text">常见用法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#LDD"><span class="toc-number">7.</span> <span class="toc-text">LDD</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%8F%E8%BF%B0-6"><span class="toc-number">7.1.</span> <span class="toc-text">描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E6%A0%BC%E5%BC%8F-6"><span class="toc-number">7.2.</span> <span class="toc-text">命令格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95-6"><span class="toc-number">7.3.</span> <span class="toc-text">常见用法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9B%B4%E5%A4%9A%E5%86%85%E5%AE%B9%E8%AF%B7%E5%8F%82%E8%80%83man%E6%89%8B%E5%86%8C"><span class="toc-number">8.</span> <span class="toc-text">更多内容请参考man手册</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/07/12/%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE%E7%BD%91%E7%AB%99%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="实现一个视频播放网站服务器"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="实现一个视频播放网站服务器"/></a><div class="content"><a class="title" href="/2021/07/12/%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE%E7%BD%91%E7%AB%99%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="实现一个视频播放网站服务器">实现一个视频播放网站服务器</a><time datetime="2021-07-12T05:34:23.895Z" title="发表于 2021-07-12 13:34:23">2021-07-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/07/11/%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E5%AE%9E%E6%97%B6%E7%A4%BE%E4%BA%A4%E8%BD%AF%E4%BB%B6/" title="实现一个社交软件"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="实现一个社交软件"/></a><div class="content"><a class="title" href="/2021/07/11/%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E5%AE%9E%E6%97%B6%E7%A4%BE%E4%BA%A4%E8%BD%AF%E4%BB%B6/" title="实现一个社交软件">实现一个社交软件</a><time datetime="2021-07-11T11:03:48.259Z" title="发表于 2021-07-11 19:03:48">2021-07-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/07/11/2021-07-06/" title="实现一个跨平台资源共享应用"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="实现一个跨平台资源共享应用"/></a><div class="content"><a class="title" href="/2021/07/11/2021-07-06/" title="实现一个跨平台资源共享应用">实现一个跨平台资源共享应用</a><time datetime="2021-07-11T05:58:02.709Z" title="发表于 2021-07-11 13:58:02">2021-07-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/06/26/%E9%AB%98%E6%80%A7%E8%83%BD%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%9A%E8%BF%9E%E6%8E%A5%E6%B1%A0%E7%9A%84%E5%AE%9E%E7%8E%B0/" title="高性能服务器：连接池的实现"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="高性能服务器：连接池的实现"/></a><div class="content"><a class="title" href="/2021/06/26/%E9%AB%98%E6%80%A7%E8%83%BD%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%9A%E8%BF%9E%E6%8E%A5%E6%B1%A0%E7%9A%84%E5%AE%9E%E7%8E%B0/" title="高性能服务器：连接池的实现">高性能服务器：连接池的实现</a><time datetime="2021-06-26T07:26:32.802Z" title="发表于 2021-06-26 15:26:32">2021-06-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/06/19/Qt%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E8%81%8A%E5%A4%A9%E5%AE%A4%E7%A8%8B%E5%BA%8F/" title="Qt实现一个聊天室程序"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Qt实现一个聊天室程序"/></a><div class="content"><a class="title" href="/2021/06/19/Qt%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E8%81%8A%E5%A4%A9%E5%AE%A4%E7%A8%8B%E5%BA%8F/" title="Qt实现一个聊天室程序">Qt实现一个聊天室程序</a><time datetime="2021-06-19T13:15:04.081Z" title="发表于 2021-06-19 21:15:04">2021-06-19</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By 橙</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><img src="https://static.dy208.cn/o_1dfilp8ruo521thr1hvf18ji17soa.png">
+<a href="http://www.beian.miit.gov.cn/"  style="color:#f72b07" target="_blank">粤ICP备2021078823号</a></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"></div><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
